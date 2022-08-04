@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :favorites
-  resources :reviews
-  resources :users
-  resources :books
+  resources :users do
+    resources :favorites
+  end
+
+  resources :books, only: [:index, :show, :create, :update, :destroy] do
+    resources :reviews, only: [:index, :create]
+  end
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
