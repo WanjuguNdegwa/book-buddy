@@ -31,14 +31,14 @@ class ReviewsController < ApplicationController
     end
 
     review.save!
-    render json: review, status: :created
+    render json: review, status: :created, serializer: BookReviewsSerializer
     
   end
 
   private
 
   def review_params
-    params.permit(:rating, :comment, :user_id)
+    params.permit(:rating, :comment)
   end
 
 end
