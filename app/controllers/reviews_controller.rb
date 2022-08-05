@@ -1,6 +1,4 @@
 class ReviewsController < ApplicationController
-  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-
   def index
     if params[:book_id]
       book = Book.find_by(id: params[:book_id])
@@ -18,7 +16,7 @@ class ReviewsController < ApplicationController
   def create
     review = Review.new(review_params)
     book = Book.find_by(id: params[:book_id])
-    user = User.find_by(id: params[:user_id])
+    user = @current_user
 
     if user
       review.user = user
@@ -41,10 +39,6 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.permit(:rating, :comment, :user_id)
-  end
-
-  def render_unprocessable_entity_response(invalid)
-    render json: { errors: invalid.record.errors }, status: :unprocessable_entity
   end
 
 end
