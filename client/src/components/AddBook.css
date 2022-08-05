@@ -1,0 +1,8 @@
+.book-cover-holder {
+  height: 90%;
+  width: 60%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 10px;
+}

@@ -58,7 +58,6 @@ function App() {
           draggable
           pauseOnHover
           />
-          app
       </div>
     </div>
   );
