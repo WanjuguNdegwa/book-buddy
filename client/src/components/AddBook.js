@@ -126,6 +126,7 @@ function AddBook() {
               className="form-control"
               placeholder="Description"
               id="description"
+              style={{height: "200px"}}
               value={description}
               onChange={(event) => setDescription(event.target.value)}
             ></textarea>

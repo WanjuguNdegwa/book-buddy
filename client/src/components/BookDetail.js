@@ -133,6 +133,7 @@ function BookDetail({ currentUser }) {
                     className="form-control"
                     placeholder="Leave a review here"
                     id="floatingTextarea"
+                    style={{height: "100px"}}
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                   ></textarea>
