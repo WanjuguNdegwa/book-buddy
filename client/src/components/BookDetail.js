@@ -8,12 +8,13 @@ import { Icon } from '@iconify/react';
 import Review from "./Review";
 import "./BookDetail.css";
 
-function BookDetail({ user }) {
+function BookDetail({ currentUser }) {
   const [book, setBook] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [hasLiked, setHasLiked] = useState(false);
   const bookId = useParams().bookId;
 
   useEffect(() => {
@@ -23,9 +24,10 @@ function BookDetail({ user }) {
       .then((data) => {
         setBook(data);
         setReviews(data.reviews);
+        setHasLiked(data.users.some((user) => user.id === currentUser.id))
         setIsLoading(false);
       });
-  }, [bookId]);
+  }, [currentUser, bookId]);
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +43,7 @@ function BookDetail({ user }) {
     });
 
     if(response.ok) {
-      toast.success('🦄 Comment added successfully', {
+      toast.success('🦄 Review added successfully', {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: true,
@@ -56,15 +58,36 @@ function BookDetail({ user }) {
   };
 
   const handleLike = async (e) => {
-    await fetch(`/users/${user.id}/favorites`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        book_id: bookId
-      }),
-    });
+    if (hasLiked) {
+      const response  = await fetch(`/users/${currentUser.id}/favorites`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          book_id: bookId
+        }),
+      });
+
+      if (response.ok) {
+        setHasLiked(false);
+      }
+  
+    } else {
+      const response  = await fetch(`/users/${currentUser.id}/favorites`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          book_id: bookId
+        }),
+      });
+  
+      if (response.ok) {
+        setHasLiked(true);
+      }
+    }
   }
 
   return (
@@ -82,8 +105,8 @@ function BookDetail({ user }) {
           <div>
             <h1 className="book-title">{book.title}</h1>
             <p className="book-author">{book.author}</p>
-            <button onClick={handleLike}>
-              <Icon icon="akar-icons:heart" color="#f8f8f8" height={36}/>
+            <button className="btn btn-outline-primary" onClick={handleLike}>
+              <Icon icon={hasLiked ? "ant-design:heart-filled" : "ant-design:heart-outlined"} height={36}/>
             </button>
             <div className="rating">
               <Rating

@@ -10,6 +10,11 @@ nav {
   align-items: center;
 }
 
+nav img {
+  width: 48px;
+  margin-right: 5px;
+}
+
 .brand-name p{
   margin: 0;
   line-height: 0.9;

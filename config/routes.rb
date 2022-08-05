@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
   resources :users do
-    resources :favorites, only: [:index, :create, :destroy]
+    resources :favorites, only: [:index, :create]
+    delete "/favorites", to: "favorites#destroy"
   end
 
   resources :books, only: [:index, :show, :create, :update, :destroy] do

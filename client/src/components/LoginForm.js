@@ -27,7 +27,7 @@ function LoginForm({ onLogin }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>Login</p>
+      <h1>Login</h1>
       <div className="form-floating mb-3">
         <input
           className="form-control"

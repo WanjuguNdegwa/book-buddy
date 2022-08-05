@@ -1,16 +1,19 @@
 import { useState } from "react";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
+import './Login.css';
+import logo from '../logo.svg';
 
 function Login({ onLogin }) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
-    <div className="row">
-      <div className="col-md-6">
-
+    <div className="row vh-100">
+      <div className="brand-section d-flex justify-content-center align-items-center flex-column col-md-6">
+        <img src={logo} alt="logo" />
+        <p className="logo-text">Book Buddy</p>
       </div>
-      <div className="col-md-6">
+      <div className="d-flex justify-content-center flex-column col-md-6">
         {showLogin ? (
           <>
             <LoginForm onLogin={onLogin} />

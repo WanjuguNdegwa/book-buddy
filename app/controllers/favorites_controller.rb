@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
   def create
     favorite = Favorite.new()
     book = Book.find_by(id: params[:book_id])
-    user = @current_user
+    user = User.find_by(id: params[:user_id])
 
     if user
       favorite.user = user
@@ -35,12 +35,10 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    favorite = Favorite.find_by(id: params[:id])
-
-    if favorite
-      favorite.destroy
-      head :no_content
-    end
+    user = User.find_by(id: params[:user_id])
+    Favorite.delete(Favorite.where(book_id: params[:book_id], user_id: user.id))
+    
+    head :no_content
   end
 
   

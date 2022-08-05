@@ -1,5 +1,5 @@
 import "./Header.css";
-import { Icon } from '@iconify/react';
+import logo from '../logo.svg';
 import { NavLink } from 'react-router-dom';
 
 const Header = ({user, setUser}) => {
@@ -17,10 +17,11 @@ const Header = ({user, setUser}) => {
       <nav className="navbar navbar-expand-lg">
         <NavLink className="navbar-brand" to="/">
           <div className="d-flex align-items-center logo">
+            <img src={logo} alt="logo" />
             <div className="brand-name">
-              <p>Book Buddy</p>
+              <p className="logo-text">Book</p>
+              <p className="logo-text">Buddy</p>
             </div>
-            <Icon icon="bx:book" color="#f8f8f8" height={72}/>
           </div>
         </NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

@@ -17,7 +17,6 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -45,7 +44,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<BooksList books={books} isLoading={isLoading} />} />
-          <Route path="/books/:bookId" element={<BookDetail user={user} />} />
+          <Route path="/books/:bookId" element={<BookDetail currentUser={user} />} />
           <Route path="/add-book" element={<AddBook />} />
           <Route path="/favorites" element={<Favorites user={user} />} />
         </Routes>

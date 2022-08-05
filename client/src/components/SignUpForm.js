@@ -33,7 +33,7 @@ function SignUpForm({ onLogin }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>Sign up</p>
+      <h1>Sign up</h1>
       <div className="form-floating mb-3">
         <input
           className="form-control"
