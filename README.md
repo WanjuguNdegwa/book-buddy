@@ -18,3 +18,5 @@ This web application will enable a user to manage their book collection by keepi
 - PostgreSQL for database 
 - Heroku for hosting
 - Firebase for storing images
+
+Link to [live site](https://bookbuddyapp.herokuapp.com/)
