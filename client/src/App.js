@@ -8,6 +8,7 @@ import BooksList from './components/BooksList';
 import BookDetail from './components/BookDetail';
 import Header from './components/Header';
 import AddBook from './components/AddBook';
+import Favorites from './pages/Favorites';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -40,12 +41,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header user={user} setUser={setUser}/>
       <div className="container">
         <Routes>
           <Route path="/" element={<BooksList books={books} isLoading={isLoading} />} />
-          <Route path="/books/:bookId" element={<BookDetail />} />
+          <Route path="/books/:bookId" element={<BookDetail user={user} />} />
           <Route path="/add-book" element={<AddBook />} />
+          <Route path="/favorites" element={<Favorites user={user} />} />
         </Routes>
         <ToastContainer
           position="bottom-right"

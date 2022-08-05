@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
   def create
     favorite = Favorite.new()
     book = Book.find_by(id: params[:book_id])
-    user = User.find_by(id: params[:user_id])
+    user = @current_user
 
     if user
       favorite.user = user

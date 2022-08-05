@@ -1,0 +1,21 @@
+.book-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 80vh;
+  margin-top: 20px;
+}
+
+.book-cover-holder {
+  height: 90%;
+  width: 60%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.reviews-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}

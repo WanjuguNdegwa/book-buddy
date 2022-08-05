@@ -1,0 +1,29 @@
+header {
+  background-color: #75B09C;
+  color: #f8f8f8;
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.brand-name p{
+  margin: 0;
+  line-height: 0.9;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.btn-text {
+  border: none;
+  width: 100%;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: left;
+}
